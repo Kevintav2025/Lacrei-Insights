@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lacrei Insights - Dashboard</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css" /> 
+    
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+  </head>
+  <body>
+    <div class="dashboard-container">
+        <header style="display: flex; justify-content: space-between; align-items: flex-start;">
+            <div>
+                <h1>Lacrei Insights</h1>
+                <p>Monitoramento de impacto social</p>
+            </div>
+            <button class="btn-filtro" onclick="alert('Relatório gerado com sucesso!')" style="display: flex; align-items: center; gap: 8px;">
+                <i data-lucide="download" style="width: 16px;"></i> Exportar PDF
+            </button>
+        </header>
+
+        <div class="stats-grid">
+            <div class="card">
+                <div class="icon-wrapper"><i data-lucide="users"></i></div>
+                <div class="card-info">
+                    <h3>Profissionais</h3>
+                    <p>1.250</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="icon-wrapper"><i data-lucide="heart"></i></div>
+                <div class="card-info">
+                    <h3>Atendimentos</h3>
+                    <p>8.420</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="chart-section">
+            <div class="chart-header">
+                <h3>Crescimento de Consultas</h3>
+                <div class="filtros">
+                    <button onclick="atualizarGrafico('semestre')" class="btn-filtro active">6 Meses</button>
+                    <button onclick="atualizarGrafico('ano')" class="btn-filtro">12 Meses</button>
+                </div>
+            </div>
+            
+            <div class="canvas-container" style="position: relative; height:300px; width:100%">
+                <canvas id="meuGrafico"></canvas>
+            </div>
+        </div>
+
+        <div class="table-section">
+            <div class="table-header">
+                <h3>Profissionais Recentes</h3>
+                <div class="search-box">
+                    <i data-lucide="search"></i>
+                    <input type="text" id="inputBusca" placeholder="Buscar por nome ou especialidade..." onkeyup="filtrarTabela()">
+                </div>
+            </div>
+            <table class="tabela-lacrei">
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Especialidade</th>
+                        <th>Status</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody id="corpo-tabela">
+                    </tbody>
+            </table>
+        </div>
+
+        <div class="bottom-grid">
+            <div class="chart-section doughnut-card">
+                <h3>Distribuição por Especialidade</h3>
+                <div style="position: relative; height:250px; width:100%; margin-top: 20px;">
+                    <canvas id="graficoPizza"></canvas>
+                </div>
+            </div>
+
+            <div class="info-card">
+                <div class="icon-wrapper"><i data-lucide="award"></i></div>
+                <h3>Meta Mensal</h3>
+                <p>Você atingiu <strong>85%</strong> da meta de atendimentos este mês!</p>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 85%;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modalProntuario" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="fecharModal()">&times;</span>
+            <div class="modal-header">
+                <h2 id="modalNomeProfissional">Prontuário</h2>
+                <p id="modalEspecialidade" style="color: var(--texto-cinza)"></p>
+            </div>
+            <hr style="margin: 1rem 0; border: 0; border-top: 1px solid #eee;">
+            <div class="modal-body">
+                <h3 style="margin-bottom: 10px;">Resumo da Consulta</h3>
+                <p id="modalResumo" style="color: var(--texto-escuro); line-height: 1.6;"></p>
+                
+                <div class="paciente-info">
+                    <span><strong>Paciente:</strong> <span id="modalPaciente"></span></span>
+                    <span><strong>Data:</strong> 30/04/2026</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
