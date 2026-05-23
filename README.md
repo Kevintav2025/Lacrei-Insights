@@ -1,5 +1,6 @@
 # 💜 Lacrei Insights - Dashboard de Impacto Social
 > 🔗 **Acesse o projeto online:** [https://kevintav2025.github.io/Lacrei-Insights/]
+
 O **Lacrei Insights** é um dashboard interativo desenvolvido para monitorar atendimentos e profissionais da plataforma Lacrei. Ele oferece uma visão clara e dinâmica sobre o crescimento das consultas, distribuição de especialidades e gestão de prontuários.
 
 ## 🚀 Funcionalidades
